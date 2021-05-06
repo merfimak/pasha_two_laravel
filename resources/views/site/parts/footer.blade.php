@@ -1,0 +1,1 @@
+<div class="footer">Copyright © 2021 YAVORSKYI VIDEO GRILL | Powered by Yavorskyi</div>
