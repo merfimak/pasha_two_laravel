@@ -113,24 +113,6 @@ function lazyScrollCheck(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
          //дрон
         const p = document.querySelector('.main_drone_img'),
             fluigeart = window.matchMedia("(min-width: 726px)");//ширина экрана
@@ -280,7 +262,7 @@ function lazyScrollCheck(){
                         input.placeholder = '';
                     }
                      message.classList.add('_false');
-                     message.innerHTML = 'Произошла ошибка';
+                     message.innerHTML = 'Wystąpił błąd';
             }
      
      }else{//проверка нашего валидатора js
@@ -300,7 +282,7 @@ function lazyScrollCheck(){
           if(input.classList.contains('_email')){
 
             if(input.value === ''){
-              input.placeholder = 'это поле обязательно для заполнения';
+              input.placeholder = 'To pole jest wymagane';
                formAddError(input);
                error++;
             }
@@ -312,19 +294,19 @@ function lazyScrollCheck(){
             }
           } else if(input.classList.contains('_text')){
               if(input.value === ''){
-                input.placeholder = 'это поле обязательно для заполнения';
+                input.placeholder = 'To pole jest wymagane';
                  formAddError(input);
                  error++;
               }
               if(input.value != '' && input.value.length < 2){
                 input.value = '';
-                input.placeholder = 'минимальное количество знаков больше 2';
+                input.placeholder = 'minimalna liczba znaków 2';
                  formAddError(input);
                  error++;
               }
-              if(input.value != '' && input.value.length > 5){
+              if(input.value != '' && input.value.length > 100){
                 input.value = '';
-                input.placeholder = 'максимально количество знаков не больше 5';
+                input.placeholder = 'maksymalna liczba znaków 100';
                  formAddError(input);
                  error++;
               }

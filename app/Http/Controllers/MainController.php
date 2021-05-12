@@ -56,14 +56,14 @@ protected $value;
 
   
          $validator = Validator::make($data,[
-        'name' => 'required|max:100|min:4',
+        'name' => 'required|max:100|min:2',
         'email' => 'required|email',
         ]);
 
     if($validator->fails()) {
             return response()->json(['error'=>$validator->errors()->all()]);//ответ в формате json, что бы работать не с обьектом а с масивом добавляем ->all()
         }
-           /// Mail::to('merfimak3@gmail.com')->send(new ContactMail($data));
+          Mail::to('merfimak3@gmail.com')->send(new ContactMail($data));
               return response()->json(['success' => TRUE,'data' => $data]);// передаем в формате json, мы сами это прописали в datatype:'JSON'
         
 

@@ -80,7 +80,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="admin_uslugi_line"></div>
+			<div class="_line"></div>
 @endforeach 
 
 		</div>
