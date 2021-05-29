@@ -14,7 +14,7 @@
 
 		<div class="main_drone_img"><img src="{{asset(env('THEME'))}}/site/img/drone.png" alt=""></div>
 		<div class="main_content_body">
-			<div class="rightnow_title">ZAMÓW USŁUGI JUŻ TERAZ!</div>
+			<h1 class="rightnow_title">ZAMÓW USŁUGI JUŻ TERAZ!</h1>
 			<a href="#messaging" class="rightnow_btn _slow_scroll">Zamów</a>
 
 			<div class="arrow_down_body">
@@ -119,7 +119,7 @@
 			</div>
 
 		<div class="form">
-		<form action="{{route('contact')}}" id="form" class="form_body">
+		<form action="{{route('contact')}}" method="post" enctype="multipart/form-data" id="form" class="form_body" >
 
  			{{csrf_field()}}
 			<div class="form_item">
@@ -191,16 +191,16 @@
 		</div>	
 			
 			<div class="form_item">
-				<label for="formName" class="form_lable">Имя*</label>
-				<input type="text" id="formName" name="name"  placeholder="Введите Имя" class="form_input _req _text">
+				<label for="formName" class="form_lable">Imie*</label>
+				<input type="text" id="formName" name="name"  placeholder="Imię wpisz swoje imię" class="form_input _req _text">
 			</div>
 			<div class="form_item">
-				<label for="formEmail" class="form_lable">Email*</label>
-				<input type="text" id="formEmail" name="email"  placeholder="Введите Email"  class="form_input _req _email">
+				<label for="formEmail" class="form_lable">Wpisz imie*</label>
+				<input type="text" id="formEmail" name="email"  placeholder="Wpisz swój"  class="form_input _req _email">
 			</div>
 			<div class="form_item">
-				<label for="formMassege" class="form_lable">Сообщение</label>
-				<textarea name="massege" id="formMassege" class="form_input"></textarea>			
+				<label for="formMassege" class="form_lable">Wiadomosc</label>
+				<textarea name="message" id="formMassege" class="form_input"></textarea>			
 			</div>
 			<div class="message" id="message"></div>
 			<button type="submit" class="form_button">Wyśli</button>
@@ -229,9 +229,9 @@
 		<div class="about_contact">
 			<div class="about_contact_title">SKONTAKTUJ SIĘ Z NAMI</div>
 				<div class="about_contact_items">
-					<div class="about_contact_item"><a href="pash@gmail.com">Email: <span>{{$info->email}}</span></a></div>	
-					<div class="about_contact_item"><a href="pash@gmail.com">Telefon: <span>{{$info->tel}}</span></a></div>	
-					<div class="about_contact_item"><a href="pash@gmail.com">Facebook: <span>{{$info->face}}</span></a></div>	
+					<div class="about_contact_item"><a href="mailto:sonderlingmeister@gmail.com">Email: <span>{{$info->email}}</span></a></div>	
+					<div class="about_contact_item"><a href="tel:+48787939909">Telefon: <span>{{$info->tel}}</span></a></div>	
+					<div class="about_contact_item"><a href="https://www.facebook.com/YavorskyiVG/"  target="_blank">Facebook: <span>Yavorskyi Video Grill</span></a></div>	
 				</div>
 		</div>
 	</div>

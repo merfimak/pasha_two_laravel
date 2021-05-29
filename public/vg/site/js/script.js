@@ -205,7 +205,7 @@ function lazyScrollCheck(){
 
 
 
-      async function formSend(e){
+     async function formSend(e){
         e.preventDefault();
         let error = formValidate(form);// проверяем своим валидатором
 
@@ -231,7 +231,8 @@ function lazyScrollCheck(){
                    vol.innerHTML = '';
                    kontakt.classList.remove('_sending');
                    //выыодим сообщение об успехе
-                   message.classList.add('_success');
+                  message.className = 'message';//оставляем только класс message(на случай если посетитель уже совершал ошибку то там будет еще и _error, нам такое не недо)
+                message.classList.add('_success');
                    message.innerHTML = 'List wysłany';
                     for(let index = 0; index < formReq.length; index++){//удоляем все плейсхолдеры если в них были сообщения об ошибках
                       const input = formReq[index];

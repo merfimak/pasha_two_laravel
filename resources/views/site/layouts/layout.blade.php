@@ -6,6 +6,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="description" content="Drone Photography and Video">
+	<meta name="keywords" content="zdjecia, video, film, Drone, kamerzysta, Photography, filmowanie, wesela, fpv, jaworski, yavorskyi, yaworski" />
 	<title>{{$title}}</title>
 		<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/swiper-bundle.min.css">
 	<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/style.min.css">
