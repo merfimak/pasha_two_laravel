@@ -58,6 +58,7 @@ protected $value;
         $validator = Validator::make($data,[ 
         'name' => 'required|max:100|min:2',
         'email' => 'required|email',
+        // 'g-recaptcha-response' => 'required|captcha',
         ]);
 
     if($validator->fails()) {
@@ -66,8 +67,10 @@ protected $value;
 
 
 
-       Mail::to('sonderlingmeister@gmail.com')->send(new ContactMail($data));
-       Mail::to('dron@yavorskyi.com')->send(new ContactMail($data));
+       Mail::to('merfimak3@gmail.com')->send(new ContactMail($data));
+      // Mail::to('sonderlingmeister@gmail.com')->send(new ContactMail($data));
+      //Mail::to('fpvsonderling@gmail.com')->send(new ContactMail($data));
+     // Mail::to('dron@yavorskyi.com')->send(new ContactMail($data));
 
 
 

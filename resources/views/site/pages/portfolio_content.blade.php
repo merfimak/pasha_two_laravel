@@ -2,22 +2,7 @@
 
 
 
-	<div class="porfolio_foto">
-		<div class="porfolio_foto_body">
-			<div class="porfolio_foto_title">foto</div>
-			<div class="porfolio_foto_content">
-				<div class="swiper-container foto_swiper">
-			    <div class="swiper-wrapper">
-			    	@foreach($portfolio_fotos as $foto)
-			    		   <div class="swiper-slide ibg foto_slide"><img src="{{asset(env('THEME'))}}/site/img/portfolio/{{$foto->portfolio_img}}" alt=""></div>
-			    	  @endforeach 
-			    </div>
-			   <!-- Add Pagination -->
-    			<div class="swiper-pagination"></div>
-			  </div>
-			</div>		
-		</div>
-	</div>
+
 
 
 		<div class="porfolio_video">
@@ -60,8 +45,22 @@
 
 
 
-
-
+	<div class="porfolio_foto">
+		<div class="porfolio_foto_body">
+			<div class="porfolio_foto_title">foto</div>
+			<div class="porfolio_foto_content">
+				<div class="swiper-container foto_swiper">
+			    <div class="swiper-wrapper">
+			    	@foreach($portfolio_fotos as $foto)
+			    		   <div class="swiper-slide ibg foto_slide"><img src="{{asset(env('THEME'))}}/site/img/portfolio/{{$foto->portfolio_img}}" alt=""></div>
+			    	  @endforeach 
+			    </div>
+			   <!-- Add Pagination -->
+    			<div class="swiper-pagination"></div>
+			  </div>
+			</div>		
+		</div>
+	</div>
 
 
 

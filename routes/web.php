@@ -14,6 +14,7 @@
 Route::get('/', ['uses'=>'MainController@show','as'=>'main']);
 Route::post('/', ['uses'=>'MainController@contact','as'=>'contact']);
 Route::get('/portfolio', ['uses'=>'PortfolioController@show','as'=>'portfolio']);
+Route::get('/calc', ['uses'=>'CalcController@show','as'=>'calc']);
 
 
 Auth::routes();

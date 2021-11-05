@@ -25,7 +25,7 @@
                     <div class="icon"><a href="https://www.facebook.com/YavorskyiVG/" target="_blank"><img src="{{asset(env('THEME'))}}/site/img/menu/fb.png" alt=""></a></div>
                     <div class="icon"><a href="https://www.instagram.com/Yavorskyivg/" target="_blank"><img src="{{asset(env('THEME'))}}/site/img/menu/inst.png" alt=""></a></div>
                     <div class="icon"><a href="https://www.youtube.com/channel/UCCptccz1aaRAS7dzP8Kkxzw" target="_blank"><img src="{{asset(env('THEME'))}}/site/img/menu/youtube.png" alt=""></a></div>
-                    <div class="icon"><a href="mailto:sonderlingmeister@gmail.com"><img src="{{asset(env('THEME'))}}/site/img/menu/mail.png" alt=""></a></div>
+                    <div class="icon"><a href="mailto:fpvsonderling@gmail.com"><img src="{{asset(env('THEME'))}}/site/img/menu/mail.png" alt=""></a></div>
                     <div class="icon"><a href="tel:+48787939909"><img src="{{asset(env('THEME'))}}/site/img/menu/tel.png" alt=""></a></div>
                 </div>
             </div>

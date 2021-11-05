@@ -10,7 +10,7 @@
 	<meta name="keywords" content="zdjecia, video, film, Drone, kamerzysta, Photography, filmowanie, wesela, fpv, jaworski, yavorskyi, yaworski" />
 	<title>{{$title}}</title>
 		<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/swiper-bundle.min.css">
-	<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/style.min.css">
+	<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/style.css">
 </head>
 <body>
 <div class="wrapper" id="wrapper">

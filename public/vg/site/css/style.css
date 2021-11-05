@@ -90,6 +90,10 @@ h6 {
   font-weight: 400;
 }
 
+.kastil_for_calc{
+  padding: 90px 0 0 0;
+}
+
 .menu {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -559,7 +563,7 @@ h6 {
 }
 
 .fullsreen_bg {
-  background: url("../img/Desert.jpg") center/cover no-repeat fixed;
+  background: url("../img/foolscrin_pashok.jpg") center/cover no-repeat fixed;
 }
 
 .news {

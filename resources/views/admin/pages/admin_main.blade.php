@@ -3,6 +3,7 @@
 	<div class="main" id="main">
 		<div class="main_body">
 			<div class="title">Главная</div>
+			<div>Ссылка на клькулятор - https://www.yavorskyi.com/calc</div>
 			<form action="{{route('admin_main_post')}}" method="post"  enctype="multipart/form-data" class="main_video_form">
 				{{ csrf_field() }}
 				<div class="main_itme">
