@@ -15,7 +15,6 @@
                 <ul class="menu__list">                 
                     <li><a href="{{ route('portfolio') }}" class="menu__link">Portfolio</a></li>
                     <li><a href="{{ route('main') }}#messaging" class="menu__link _slow_scroll">Kontakt</a></li>
-                    <li><a href="{{ route('main') }}#cennik" class="menu__link _slow_scroll">Cennik</a></li>
                     <li><a href="{{ route('main') }}#about" class="menu__link _slow_scroll">about</a></li>
                 </ul>
             </nav>

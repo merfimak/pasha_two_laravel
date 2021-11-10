@@ -82,6 +82,7 @@
 				<label for="formMassege" class="form_lable">Wiadomosc</label>
 				<textarea name="message" id="formMassege" class="form_input"></textarea>			
 			</div>
+			<div style="margin: 0 0 20px 0;" class="g-recaptcha" data-sitekey="6LdWWRgdAAAAAIFyliZdWSGPYHOQyiEU5fJVgUj4"></div>
 			<div class="message" id="message"></div>
 			<button type="submit" class="form_button">Wyśli</button>
 		</form>

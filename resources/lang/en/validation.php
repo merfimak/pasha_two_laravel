@@ -115,7 +115,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
-
+    'recaptcha' => 'The :attribute answer is invalid.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -144,6 +144,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+    'g-recaptcha-response' => 'reCAPTCHA',
+    ],
 
 ];

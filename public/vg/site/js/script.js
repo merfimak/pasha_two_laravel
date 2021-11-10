@@ -43,70 +43,70 @@ ibg();
 
 
 
-if(window.location.pathname.indexOf('portfolio') === -1){
+if(window.location.pathname.indexOf('portfolio') === -1 && window.location.pathname.indexOf('calc') === -1){
  console.log('страничка index')
 
- //плавный скрол
-document.querySelectorAll('._slow_scroll').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        let arr= this.getAttribute('href').split('#');//достаем ссылку делим ее по #  
-        let href = arr[arr.length - 1];//достаем последний элимент массива это и будет название нужного нам блока
-        const scrollTarget = document.getElementById(href);
-         const topOffset = document.querySelector('.menu').offsetHeight;
-       // const topOffset = 0; // если не нужен отступ сверху 
-        const elementPosition = scrollTarget.getBoundingClientRect().top;//возвращает размер элемента и его позицию относительно viewport (часть страницы, показанная на экране, и которую мы видим).
-        const offsetPosition = elementPosition - topOffset;
-        window.scrollBy({
-            top: offsetPosition,
-            behavior: 'smooth'
+       //плавный скрол
+      document.querySelectorAll('._slow_scroll').forEach(link => {
+          link.addEventListener('click', function(e) {
+              e.preventDefault();
+              let arr= this.getAttribute('href').split('#');//достаем ссылку делим ее по #  
+              let href = arr[arr.length - 1];//достаем последний элимент массива это и будет название нужного нам блока
+              const scrollTarget = document.getElementById(href);
+               const topOffset = document.querySelector('.menu').offsetHeight;
+             // const topOffset = 0; // если не нужен отступ сверху 
+              const elementPosition = scrollTarget.getBoundingClientRect().top;//возвращает размер элемента и его позицию относительно viewport (часть страницы, показанная на экране, и которую мы видим).
+              const offsetPosition = elementPosition - topOffset;
+              window.scrollBy({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+              });
+          });
+      });
+
+
+      //ленивая загрузка
+      const lazy = document.querySelectorAll('img[data-src], iframe[data-src_vid]');
+      const windowHeight = document.documentElement.clientHeight;//общая высота
+
+      let lazyPosition = [];//массив с позициями элементов которые надо будет подгрузить
+
+      if(lazy.length>0){//если есть хоть один элимент
+        lazy.forEach(item => {//проходимся по всему масиву
+          if(item.dataset.src || item.dataset.src_vid){//проверяем есть ли какие либо данные
+            //Element.getBoundingClientRect() возвращает размер элемента и его позицию относительно viewport (часть страницы, показанная на экране, и которую мы видим).
+            lazyPosition.push(item.getBoundingClientRect().top + pageYOffset )//pageYOffset  возвращает количество пикселей, на которое прокручен документ по вертикали
+          lazyScrollCheck()
+            
+          }
         });
-    });
-});
+      }
 
+      window.addEventListener("scroll", lazyScroll)
 
-//ленивая загрузка
-const lazy = document.querySelectorAll('img[data-src], iframe[data-src_vid]');
-const windowHeight = document.documentElement.clientHeight;//общая высота
+      function lazyScroll(){
+        if(document.querySelectorAll('img[data-src], iframe[data-src_vid]').length>0)//эта проверка сдесь так как после каждого загруженного элемента мы убираем его из массива
+        lazyScrollCheck()
+      }
 
-let lazyPosition = [];//массив с позициями элементов которые надо будет подгрузить
-
-if(lazy.length>0){//если есть хоть один элимент
-  lazy.forEach(item => {//проходимся по всему масиву
-    if(item.dataset.src || item.dataset.src_vid){//проверяем есть ли какие либо данные
-      //Element.getBoundingClientRect() возвращает размер элемента и его позицию относительно viewport (часть страницы, показанная на экране, и которую мы видим).
-      lazyPosition.push(item.getBoundingClientRect().top + pageYOffset )//pageYOffset  возвращает количество пикселей, на которое прокручен документ по вертикали
-    lazyScrollCheck()
-      
-    }
-  });
-}
-
-window.addEventListener("scroll", lazyScroll)
-
-function lazyScroll(){
-  if(document.querySelectorAll('img[data-src], iframe[data-src_vid]').length>0)//эта проверка сдесь так как после каждого загруженного элемента мы убираем его из массива
-  lazyScrollCheck()
-}
-
-function lazyScrollCheck(){
-  //findIndex() возвращает индекс в массиве, если элемент удовлетворяет условию проверяющей функции. В противном случае возвращается -1.
-  //item - позиция какогото из элементов который надо подгрузить
-  // в момент когда в на нижней границе экрана появится элимент, сработает условие в нутри findeIndex и на вернется индек того элемента который надо подгружать
-  let elemIndex = lazyPosition.findIndex(
-     item =>  pageYOffset > item - windowHeight
-    );
-  if(elemIndex >= 0){//если нашолся то 
-    if(lazy[elemIndex].dataset.src){
-      lazy[elemIndex].src = lazy[elemIndex].dataset.src;//засовываем в src нужный петь
-      lazy[elemIndex].removeAttribute('data-src');//удаляем ненужный атрибут
-    }else if(lazy[elemIndex].dataset.src_vid){
-      lazy[elemIndex].src = lazy[elemIndex].parentElement.dataset.vid;//src берем у родителя так как dataset у iframe не прописывается
-      lazy[elemIndex].removeAttribute('data-src_vid');
-    }
-    delete lazyPosition[elemIndex];
-  }
-}
+      function lazyScrollCheck(){
+        //findIndex() возвращает индекс в массиве, если элемент удовлетворяет условию проверяющей функции. В противном случае возвращается -1.
+        //item - позиция какогото из элементов который надо подгрузить
+        // в момент когда в на нижней границе экрана появится элимент, сработает условие в нутри findeIndex и на вернется индек того элемента который надо подгружать
+        let elemIndex = lazyPosition.findIndex(
+           item =>  pageYOffset > item - windowHeight
+          );
+        if(elemIndex >= 0){//если нашолся то 
+          if(lazy[elemIndex].dataset.src){
+            lazy[elemIndex].src = lazy[elemIndex].dataset.src;//засовываем в src нужный петь
+            lazy[elemIndex].removeAttribute('data-src');//удаляем ненужный атрибут
+          }else if(lazy[elemIndex].dataset.src_vid){
+            lazy[elemIndex].src = lazy[elemIndex].parentElement.dataset.vid;//src берем у родителя так как dataset у iframe не прописывается
+            lazy[elemIndex].removeAttribute('data-src_vid');
+          }
+          delete lazyPosition[elemIndex];
+        }
+      }
 
 
 
@@ -125,73 +125,10 @@ function lazyScrollCheck(){
 
 
 
-      //колькулятор цен
-      let vol = document.getElementById('vol');// куда выводим сумму
-      let formSelect_rodzaj = document.getElementById('formSelect_rodzaj');
-      let formSelect_montag = document.getElementById('formSelect_montag');
-      let formSelect_muzyka = document.getElementById('formSelect_muzyka');
-
-      let range = document.getElementById('formRange');
-      let range_value_div = document.getElementById('range_value_div');//где будем показывать минуты
-      let range_price = Number(range.dataset.price);//достаем стоимость одной минуты
-      range_value_div.innerHTML = range.value;//показываем изночальное количество минут
+      
 
 
-      let checkbox_input_lektor = document.getElementById('checkbox_input_lektor');
-      let checkbox_input_chrom = document.getElementById('checkbox_input_chrom');
-      let checkbox_input_promowanie = document.getElementById('checkbox_input_promowanie');
-
-      let lektor_price = Number(checkbox_input_lektor.dataset.price);
-      let chrom_price = Number(checkbox_input_chrom.dataset.price);
-      let promowanie_price = Number(checkbox_input_promowanie.dataset.price);
-
-
-      let inputs = document.getElementsByClassName('input');
-      for (i = 0; i < inputs.length; i++) {
-      inputs[i].addEventListener('input', () => {//любое изменение в инпутах
-        let res = 0;//обнуляем каждый раз
-        vol.innerHTML = res;
-        if (checkbox_input_lektor.checked){ 
-                res = res + lektor_price;
-            }
-         if (checkbox_input_chrom.checked){ 
-            res = res + chrom_price;
-        }
-          if (checkbox_input_promowanie.checked){ 
-            res = res + promowanie_price;
-        }
-
-        //достаем цену выбранного пункта из data-price пункта option 
-        let select_rodzaj_sum = Number(formSelect_rodzaj.options[formSelect_rodzaj.selectedIndex].getAttribute('data-price'));
-        let select_montag_sum = Number(formSelect_montag.options[formSelect_montag.selectedIndex].getAttribute('data-price'));
-        let select_muzyka_sum = Number(formSelect_muzyka.options[formSelect_muzyka.selectedIndex].getAttribute('data-price'));
-
-        // умножаем минуты на стоимость 1 минуты
-        let range_sum = range.value * range_price;
-        range_value_div.innerHTML = range.value;//показываем количество минут
-
-        res = res + range_sum + select_rodzaj_sum + select_montag_sum + select_muzyka_sum;
-        vol.innerHTML = res;
-
-        });
-      }
-
-
-
-      //popup
-      const popup = document.querySelector('.kontakt_cennik.popup')
-      const modal_body = document.querySelector('.modal_body')
-      const modal = document.querySelector('.modal')
-
-      popup.addEventListener('click', (event) => {
-        modal.classList.toggle("active");
-        modal_body.classList.toggle("active");
-      })
-
-      modal.addEventListener('click', (event) => {
-        modal.classList.toggle("active");
-        modal_body.classList.toggle("active");
-      })
+      
 
 
       //форма
@@ -213,7 +150,7 @@ function lazyScrollCheck(){
         //если нет ошибок
          if(error === 0){
         let formData = new FormData(form);
-          formData.set('min', range.value);//добовляем количество минут
+         
             kontakt.classList.add('_sending');//когда убедились что ошибок нет, делаем так что бы посетитель понял что почта отправляется
 
 
@@ -226,9 +163,6 @@ function lazyScrollCheck(){
               if(result.success){//проверка валидатора который находится на сервере
                console.log(result)
                    form.reset();
-                   range.value = 1;
-                   range_value_div.innerHTML = range.value;
-                   vol.innerHTML = '';
                    kontakt.classList.remove('_sending');
                    //выыодим сообщение об успехе
                   message.className = 'message';//оставляем только класс message(на случай если посетитель уже совершал ошибку то там будет еще и _error, нам такое не недо)
@@ -240,9 +174,6 @@ function lazyScrollCheck(){
                     }
               }else{//проверка валидатора который находится на сервере
                 form.reset();
-                   range.value = 1;
-                   range_value_div.innerHTML = range.value;
-                   vol.innerHTML = '';
                    kontakt.classList.remove('_sending');
                     for(let index = 0; index < formReq.length; index++){//удоляем все плейсхолдеры если в них были сообщения об ошибках
                       const input = formReq[index];
@@ -254,9 +185,6 @@ function lazyScrollCheck(){
              
             }else{////проверка пришол ли вообще ответ от сервера
               form.reset();
-                   range.value = 1;
-                   range_value_div.innerHTML = range.value;
-                   vol.innerHTML = '';
                    kontakt.classList.remove('_sending');
                     for(let index = 0; index < formReq.length; index++){//удоляем все плейсхолдеры если в них были сообщения об ошибках
                       const input = formReq[index];
@@ -326,7 +254,7 @@ function lazyScrollCheck(){
         input.parentElement.classList.remove('_error');
         input.classList.remove('_error');
       }
-}else{
+}else if(window.location.pathname.indexOf('calc') === -1){
   console.log('страничка portfolio')
    var swiper = new Swiper('.foto_swiper', {
  effect: 'coverflow',
@@ -402,68 +330,60 @@ modal_video_body.classList.remove("active");
 videoPopup()
 }
 
+else{
+  console.log('колькулятор')
+//колькулятор цен
+      let vol = document.getElementById('vol');// куда выводим сумму
+      let formSelect_rodzaj = document.getElementById('formSelect_rodzaj');
+      let formSelect_montag = document.getElementById('formSelect_montag');
+      let formSelect_muzyka = document.getElementById('formSelect_muzyka');
+
+      let range = document.getElementById('formRange');
+      let range_value_div = document.getElementById('range_value_div');//где будем показывать минуты
+      let range_price = Number(range.dataset.price);//достаем стоимость одной минуты
+      range_value_div.innerHTML = range.value;//показываем изночальное количество минут
 
 
+      let checkbox_input_lektor = document.getElementById('checkbox_input_lektor');
+      let checkbox_input_chrom = document.getElementById('checkbox_input_chrom');
+      let checkbox_input_promowanie = document.getElementById('checkbox_input_promowanie');
+
+      let lektor_price = Number(checkbox_input_lektor.dataset.price);
+      let chrom_price = Number(checkbox_input_chrom.dataset.price);
+      let promowanie_price = Number(checkbox_input_promowanie.dataset.price);
 
 
+      let inputs = document.getElementsByClassName('input');
+      for (i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('input', () => {//любое изменение в инпутах
+        let res = 0;//обнуляем каждый раз
+        vol.innerHTML = res;
+        if (checkbox_input_lektor.checked){ 
+                res = res + lektor_price;
+            }
+         if (checkbox_input_chrom.checked){ 
+            res = res + chrom_price;
+        }
+          if (checkbox_input_promowanie.checked){ 
+            res = res + promowanie_price;
+        }
 
+        //достаем цену выбранного пункта из data-price пункта option 
+        let select_rodzaj_sum = Number(formSelect_rodzaj.options[formSelect_rodzaj.selectedIndex].getAttribute('data-price'));
+        let select_montag_sum = Number(formSelect_montag.options[formSelect_montag.selectedIndex].getAttribute('data-price'));
+        let select_muzyka_sum = Number(formSelect_muzyka.options[formSelect_muzyka.selectedIndex].getAttribute('data-price'));
 
+        // умножаем минуты на стоимость 1 минуты
+        let range_sum = range.value * range_price;
+        range_value_div.innerHTML = range.value;//показываем количество минут
 
+        res = res + range_sum + select_rodzaj_sum + select_montag_sum + select_muzyka_sum;
+        vol.innerHTML = res;
 
+        });
+      }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

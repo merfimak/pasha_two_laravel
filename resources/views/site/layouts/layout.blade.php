@@ -9,6 +9,7 @@
 	<meta name="description" content="Drone Photography and Video">
 	<meta name="keywords" content="zdjecia, video, film, Drone, kamerzysta, Photography, filmowanie, wesela, fpv, jaworski, yavorskyi, yaworski" />
 	<title>{{$title}}</title>
+	<script src="https://www.google.com/recaptcha/api.js"></script>
 		<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/swiper-bundle.min.css">
 	<link rel="stylesheet" href="{{asset(env('THEME'))}}/site/css/style.css">
 </head>
